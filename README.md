@@ -237,3 +237,23 @@ forward ke tensors → temporary
 ---
 
 Agar chaho to main tumhe **PyTorch autograd ka ek chota sa diagram + example** dikha sakta hoon jisse **exact samajh aa jayega kaun tensor gradient le raha hai aur kaun nahi** — ye concept LLM code samajhne me bahut kaam aata hai.
+
+
+
+# if tujhe kisi ki training roki simple 
+ye kar 
+
+            class GPTMODEL(nn.Module):
+              def __init__(self,cfg):
+                super().__init__()
+                self.tok_emb=nn.Embedding(cfg["vocab_size"],cfg["emb_dim"])
+                self.tok_emb.weight.requires_grad = False   # 👈 freeze   #MOST IMPOT REQ GRAD FALSE AB BICH MEIN KAR DEGA YE TAB BHI LIKE ISKE LIYE WEGTH UPDATE NI HONGE ISKE AAGE PICH WALE ISS USE KARNEGE BAS ISKA WEIGHTUPDATE RUK JAEYGA YE CONSTANT NI BAN JAYEGA 
+            
+                self.pos_emb=nn.Embedding(cfg["context_length"],cfg["emb_dim"])
+                self.drop_emb=nn.Dropout(cfg["drop_rate"])
+            
+                self.trf_blocks=nn.Sequential(
+                    *[TransformerBlock(cfg) for _ in range(cfg["n_layers"])])
+            
+                self.final_norm=LayerNorm(cfg["emb_dim"])
+                self.out_head=nn.Linear(cfg["emb_dim"],cfg["vocab_size"],bias=False)
