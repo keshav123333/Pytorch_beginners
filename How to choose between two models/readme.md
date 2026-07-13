@@ -1,5 +1,5 @@
 # Bootstrap Method 
-
+```python
     import torch
     import numpy as np
     import matplotlib.pyplot as plt
@@ -192,7 +192,7 @@
         "bootstrap_distribution": diff_scores
     }
 
-
+````
 
 then fir ye 
 
