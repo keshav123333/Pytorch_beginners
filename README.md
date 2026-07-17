@@ -257,3 +257,13 @@ ye kar
             
                 self.final_norm=LayerNorm(cfg["emb_dim"])
                 self.out_head=nn.Linear(cfg["emb_dim"],cfg["vocab_size"],bias=False)
+
+
+# Kisi link ko downloadable kaise banaye in kaggle ya kahi 
+Agar local machine par chahiye
+
+Kaggle notebook me ye chalao:
+```python
+from IPython.display import FileLink
+FileLink('/kaggle/working/vit_model.pth')
+````
