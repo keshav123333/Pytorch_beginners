@@ -266,4 +266,8 @@ Kaggle notebook me ye chalao:
 ```python
 from IPython.display import FileLink
 FileLink('/kaggle/working/vit_model.pth')
+
 ````
+
+# torch stack 
+input_tensor=torch.stack(input_lst).to(device)
