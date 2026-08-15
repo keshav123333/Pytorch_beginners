@@ -272,3 +272,8 @@ FileLink('/kaggle/working/vit_model.pth')
 # torch stack 
 input_tensor=torch.stack(input_lst).to(device)
 inputlist[[],[]] aisa kuch 
+
+
+
+# torch cat concatenation
+idx=torch.cat((idx,idx_next),dim=1)
