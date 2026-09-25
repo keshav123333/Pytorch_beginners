@@ -24,8 +24,29 @@ with torch.no_grad():
 emb = outputs.last_hidden_state.mean(dim=1)
 
 # Normalize for cosine similarity
-
-```
+ 
 emb = F.normalize(emb, p=2, dim=1)
 
 print(emb.shape)
+
+```
+
+
+````python
+emb = model.encode(
+    candidates["text"].tolist(),
+    normalize_embeddings=True,
+    show_progress_bar=True
+)
+
+toh embeddings ko disk par save kar do. Next time model se dobara encode karne ki zarurat nahi padegi.
+
+Best simple way: .npy
+import numpy as np
+
+np.save("candidate_embeddings.npy", emb)
+
+Baad mein:
+
+emb = np.load("candidate_embeddings.npy")
+````
