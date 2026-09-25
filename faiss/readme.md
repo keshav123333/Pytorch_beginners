@@ -513,3 +513,31 @@ def make_bucket(s1):
 
 make_bucket(s1)
 ```
+
+# faiss save and load 
+````python
+# ============================================================
+# 8. SAVE FAISS INDEX
+# ============================================================
+
+faiss.write_index(
+    index,
+    "/kaggle/working/s2_s3_ivf.index"
+)
+
+print("FAISS index saved!")
+
+
+# load
+import faiss
+
+index = faiss.read_index(
+    "/kaggle/working/s2_s3_ivf.index"
+)
+
+# if nprobe change karna ho toh
+ivf_index = faiss.extract_index_ivf(index)
+
+ivf_index.nprobe = 50
+print(index.ntotal)
+print(ivf_index.nprobe) 
