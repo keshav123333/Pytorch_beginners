@@ -401,13 +401,8 @@ for start in range(
 # ============================================================
 # 7. IVF SEARCH PARAMETERS
 # ============================================================
-#
-# Because index = IndexIDMap2(ivf_index),
-# nprobe belongs to the underlying IVF index.
-#
-# ============================================================
 
-index.index.nprobe = 50
+ivf_index.nprobe = 50
 
 
 print("\n==============================")
@@ -421,12 +416,12 @@ print(
 
 print(
     "nlist:",
-    index.index.nlist
+    ivf_index.nlist
 )
 
 print(
     "nprobe:",
-    index.index.nprobe
+    ivf_index.nprobe
 )
 
 
