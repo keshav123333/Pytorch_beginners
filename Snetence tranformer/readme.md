@@ -50,3 +50,27 @@ Baad mein:
 
 emb = np.load("candidate_embeddings.npy")
 ````
+
+faiss ka retrive karke karne ke liye hai
+````python
+import faiss
+
+# 1. CPU index banao
+index = faiss.IndexFlatIP(emb.shape[1])
+
+# 2. CPU index ko GPU par transfer karo
+res = faiss.StandardGpuResources()
+gpu_index = faiss.index_cpu_to_gpu(res, 0, index)
+
+# 3. Embeddings GPU index mein add karo
+gpu_index.add(emb)
+
+# 4. Query embedding
+query_emb = model.encode(
+    queries,
+    normalize_embeddings=True
+)
+
+# 5. GPU FAISS search
+scores, indices = gpu_index.search(query_emb, k=10)
+````
